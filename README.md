@@ -105,10 +105,20 @@ console.log("b defined? " + (typeof b !== 'undefined'));
 var addSix = createBase(6);
 addSix(10); // returns 16
 addSix(21); // returns 27
+
+function createBase(num) {
+  return function(num2) {
+      return num + num2;
+  }
+}
 ```
 
 3. Research the differences between functional programming and object oriented programming. Then, describe the pros and cons of functional programming vs object-oriented programming. This is a common interview question and great practice!
-
+- elminates any side effects in code as its operations are bound by its arguments and its immutable data 
+- more efficient and concise 
+- better for pair programming 
+- Clear in terms of functional objectives
+- code is more DRY 
 
 
 ## Resources
