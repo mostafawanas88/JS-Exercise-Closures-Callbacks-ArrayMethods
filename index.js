@@ -92,6 +92,20 @@ finalScore(inning, 9) might return:
 // return updated object
 
 
+// function finalScore(callback,num){
+
+//   let scoreObj = {
+//     Home: 0,
+//     Away: 0,
+//   }
+//   for (let i = 1; i <= num; i++) {
+//     scoreObj.Home += callback();
+//     scoreObj.Away += callback();
+//     console.log(`inning number ${i}: awayTeam: ${scoreObj.Away}, homeTeam: ${scoreObj.Home}`);
+//   }
+//   return `Final Score --> HomeTeam: ${scoreObj.Home}, AwayTeam: ${scoreObj.Away}`;
+// }
+
 function finalScore(callback,num){
 
   let scoreObj = {
@@ -101,9 +115,8 @@ function finalScore(callback,num){
   for (let i = 1; i <= num; i++) {
     scoreObj.Home += callback();
     scoreObj.Away += callback();
-    console.log(`inning number ${i}: awayTeam: ${scoreObj.Away}, homeTeam: ${scoreObj.Home}`);
   }
-  return `Final Score --> HomeTeam: ${scoreObj.Home}, AwayTeam: ${scoreObj.Away}`;
+  return scoreObj;
 }
 
 /* Task 4: 
@@ -134,7 +147,14 @@ Final Score: awayTeam - homeTeam */
 // execution: cb1,cb2,num
 
 function scoreboard(cb1,cb2,num) {
-  return cb2(cb1,num);
+  for (let i = 1; i <= num; i++) {
+    console.log(`inning number ${i}: awayTeam: ${cb2(cb1,num).Away}, homeTeam: ${cb2(cb1,num).Home}`);
+  }
+  return `Final Score --> HomeTeam: ${cb2(cb1,num).Home}, AwayTeam: ${cb2(cb1,num).Away}`
 }
+
+// function scoreboard(cb1,cb2,num) {
+//   return cb2(cb1,num);
+// }
 
 scoreboard(inning,finalScore,9);
