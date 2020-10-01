@@ -91,20 +91,20 @@ finalScore(inning, 9) might return:
 // iterate over number of innings, calling the callback once on the home property and once on the away property
 // return updated object
 
+
 function finalScore(callback,num){
 
   let scoreObj = {
     Home: 0,
     Away: 0,
   }
-  for (let i = 0; i < num; i++) {
+  for (let i = 1; i <= num; i++) {
     scoreObj.Home += callback();
     scoreObj.Away += callback();
+    console.log(`inning number ${i}: awayTeam: ${scoreObj.Away}, homeTeam: ${scoreObj.Home}`);
   }
-  return scoreObj;
+  return `Final Score --> HomeTeam: ${scoreObj.Home}, AwayTeam: ${scoreObj.Away}`;
 }
-
-finalScore(inning,9);
 
 /* Task 4: 
 
@@ -128,8 +128,13 @@ and returns the score at each pont in the game, like so:
 
 Final Score: awayTeam - homeTeam */
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+// input: callback function inning (calculates the score)
+// input: callback function (inningscore) that adds innings to object
+// input: number of innings to be printed
+// execution: cb1,cb2,num
+
+function scoreboard(cb1,cb2,num) {
+  return cb2(cb1,num);
 }
 
-
+scoreboard(inning,finalScore,9);
