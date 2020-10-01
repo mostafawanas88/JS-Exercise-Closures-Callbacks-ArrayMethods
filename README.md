@@ -9,7 +9,12 @@ The module challenge is the afternoon project or assignment that students work t
 ## Objectives
 
 - Explain function scope
+-- Function scope refers to the accessibility of variables in one's program. A local scope is considered to be what is inside the function itself, and is hence only accessible from within the function body. On the other hand, a global scope is one that sits outside of the function body. This is accesible by the function (functions can reach out and access varibale in global scope)  
+
 - Describe what closure is, how closure is created in a program and why it is important to understand closures in JavaScript  
+When functions look outward for context. If a variable is not defined within the function body, the function will reach out to the outer / global scope and look for it
+
+
 
 ## Introduction
 
@@ -42,6 +47,12 @@ Find the file `index.js` and complete the tasks until your tests are passing.
 Edit the `ReadMe` file with your answers.
 
 1. In your own words, define closure (1-2 sentences).
+    - closure is what gives our function memories 
+    - closure stores function by reference in another function
+    - closure has access to the parent scope + its own scope
+    - once called, it updates based on the previous call
+    - in closure, you return the inside function (not call it) and then you can call it later
+
 2. Study the following code, then answer the questions below.
 
 ```js
@@ -63,8 +74,14 @@ dansRoll();
 ```
 
 a. Where is closure used in this code? How can you tell?
+
+- closure is being used inside personalDice function. I can tell through the return of an anonymous function inside of it that is able to reach out and grab the argument / variable letter once it is assigned. 
+
 b. Compare and contrast calling `dansRoll` the first and second time. What is always the same? What could change?
+- the name Dan (passed in as an argument in dansRoll) will always be constant. The output of the 'newRoll' variable will change everytime the 'dansRoll' is called.
+
 c. What is the lexical scope of `newRoll`? 
+- `newRoll` private / lexical scope is the anonymous function it is being defined into. However, given that it is part of the most inner function. `newRoll` can technically reach out and grab any other variable from outside of its private scope.
 
 ### Task 3 - Stretch Goals
 
