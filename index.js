@@ -27,10 +27,16 @@ function processFirstItem(stringList, callback) {
  * Study the code for counter1 and counter2. Answer the questions below.
  * 
  * 1. What is the difference between counter1 and counter2?
+ * - counter1 is defining count in its lexical scope and then returning an anonymous function that adds 1 to count with every call
+ * - counter2 is defining count in the global scope. Additions to count are being done through calling counter2 and this will directly have an impact on the count variable in global.
  * 
  * 2. Which of the two uses a closure? How can you tell?
+ * - both functions use closure, but in two different ways. Counter1 uses in function closure and returns a function from within a function. Counter2 uses closure in the context of counter2() reaching out and grabbing the variable from outside its scope and then incrementing it. 
  * 
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
+ * - If you want to make the count variable more private, then counter1 would be better
+ * - counter2 allows more accessibility to the count variable
+ * - counter1 allows for less manipulation of the count variable. It can also be re-assigned to many variables at 0 at the same time.  
  *
 */
 
