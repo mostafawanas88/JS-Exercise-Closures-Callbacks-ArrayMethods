@@ -62,9 +62,10 @@ function counter2() {
 
 Write a function called `inning` that generates a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(/*Code Here*/){
+function inning(){
 
-    /*Code Here*/
+let inningScore = Math.floor(Math.random() * 3);
+return inningScore;
 
 }
 
@@ -82,11 +83,28 @@ finalScore(inning, 9) might return:
 
 */ 
 
-function finalScore(/*code Here*/){
+// input: callback function inning (generating a random number between 0 and 2 every single time it is called)
+// input: number of innings (iterations) that will run in order to reach the final score
+// input: object parameters in body of the function including home and away
+// output: object with home and away scores 
+// execution: create a new object with home and away properties
+// iterate over number of innings, calling the callback once on the home property and once on the away property
+// return updated object
 
-  /*Code Here*/
+function finalScore(callback,num){
 
+  let scoreObj = {
+    Home: 0,
+    Away: 0,
+  }
+  for (let i = 0; i < num; i++) {
+    scoreObj.Home += callback();
+    scoreObj.Away += callback();
+  }
+  return scoreObj;
 }
+
+finalScore(inning,9);
 
 /* Task 4: 
 
