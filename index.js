@@ -27,10 +27,16 @@ function processFirstItem(stringList, callback) {
  * Study the code for counter1 and counter2. Answer the questions below.
  * 
  * 1. What is the difference between counter1 and counter2?
+ * - counter1 is defining count in its lexical scope and then returning an anonymous function that adds 1 to count with every call
+ * - counter2 is defining count in the global scope. Additions to count are being done through calling counter2 and this will directly have an impact on the count variable in global.
  * 
  * 2. Which of the two uses a closure? How can you tell?
+ * - both functions use closure, but in two different ways. Counter1 uses in function closure and returns a function from within a function. Counter2 uses closure in the context of counter2() reaching out and grabbing the variable from outside its scope and then incrementing it. 
  * 
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
+ * - If you want to make the count variable more private, then counter1 would be better
+ * - counter2 allows more accessibility to the count variable
+ * - counter1 allows for less manipulation of the count variable. It can also be re-assigned to many variables at 0 at the same time.  
  *
 */
 
@@ -56,9 +62,10 @@ function counter2() {
 
 Write a function called `inning` that generates a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(/*Code Here*/){
+function inning(){
 
-    /*Code Here*/
+let inningScore = Math.floor(Math.random() * 3);
+return inningScore;
 
 }
 
@@ -76,10 +83,27 @@ finalScore(inning, 9) might return:
 
 */ 
 
-function finalScore(/*code Here*/){
+// input: callback function inning (generating a random number between 0 and 2 every single time it is called)
+// input: number of innings (iterations) that will run in order to reach the final score
+// input: object parameters in body of the function including home and away
+// output: object with home and away scores 
+// execution: create a new object with home and away properties
+// iterate over number of innings, calling the callback once on the home property and once on the away property
+// return updated object
 
-  /*Code Here*/
 
+function finalScore(callback,num){
+
+  let scoreObj = {
+    Home: 0,
+    Away: 0,
+  }
+  for (let i = 1; i <= num; i++) {
+    scoreObj.Home += callback();
+    scoreObj.Away += callback();
+    console.log(`inning number ${i}: awayTeam: ${scoreObj.Away}, homeTeam: ${scoreObj.Home}`);
+  }
+  return `Final Score --> HomeTeam: ${scoreObj.Home}, AwayTeam: ${scoreObj.Away}`;
 }
 
 /* Task 4: 
@@ -104,8 +128,13 @@ and returns the score at each pont in the game, like so:
 
 Final Score: awayTeam - homeTeam */
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+// input: callback function inning (calculates the score)
+// input: callback function (inningscore) that adds innings to object
+// input: number of innings to be printed
+// execution: cb1,cb2,num
+
+function scoreboard(cb1,cb2,num) {
+  return cb2(cb1,num);
 }
 
-
+scoreboard(inning,finalScore,9);
